@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import profileImage from '../../public/images/profile.png';
+import Link from 'next/link';
 
 
 
@@ -55,6 +56,10 @@ const Navbar = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
             </div>
+            <ul className='space-y-3'>
+              <li><Link href='/'>Home</Link></li>
+              <li><Link href='/details'>Patient details</Link></li>
+            </ul>
             <ul className=''>
             <li className='flex justify-center items-center gap-x-2 bg-[#F5F5F5] px-2 py-2 rounded-full'><Image src={profileImage} alt='profile image' className='flex'/><span className='text-black text-sm'>Daniel</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="black" className="w-5 h-5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
