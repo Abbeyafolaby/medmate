@@ -59,6 +59,8 @@ const Navbar = () => {
             <ul className='space-y-3'>
               <li><Link href='/'>Home</Link></li>
               <li><Link href='/details'>Patient details</Link></li>
+              <li><Link href='/signup'>Sign up</Link></li>
+              <li><Link href='/login'>Log in</Link></li>
             </ul>
             <ul className=''>
             <li className='flex justify-center items-center gap-x-2 bg-[#F5F5F5] px-2 py-2 rounded-full'><Image src={profileImage} alt='profile image' className='flex'/><span className='text-black text-sm'>Daniel</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="black" className="w-5 h-5">
