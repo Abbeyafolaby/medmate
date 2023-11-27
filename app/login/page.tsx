@@ -3,8 +3,11 @@ import {useState} from 'react'
 import doctorImage from '../../public/images/doctors.png'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 const LogInPage = () => {
+
+  const router = useRouter();
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -14,6 +17,11 @@ const LogInPage = () => {
         confirmPassword: '',
         doctorId: '',
         phoneNumber: '',
+      });
+
+      const [registrationStatus, setRegistrationStatus] = useState({
+        success: false,
+        error: false,
       });
     
       const handleInputChange = (e: any) => {
@@ -27,7 +35,7 @@ const LogInPage = () => {
         e.preventDefault();
     
         try {
-          const response = await fetch('https://medmatebackend2-production.up.railway.app/api/v1/auth/registerUserDoctor', {
+          const response = await fetch('https://medmatebackend2-production.up.railway.app/api/v1/auth/authenticate', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -41,13 +49,18 @@ const LogInPage = () => {
     
           if (response.ok) {
             // Handle successful registration
-            console.log('Login successful, welcome Back!');
+            setRegistrationStatus({ success: true, error: false });
+            router.push('/'); // Redirect to the home page
           } else {
             // Handle registration error
-            console.error('Login failed');
+            setRegistrationStatus({ success: false, error: true });
+      
+            // Log the details of the failed response
+            console.error('Registration failed. Server response:', await response.json());
           }
         } catch (error) {
           console.error('Error during registration:', error);
+          setRegistrationStatus({ success: false, error: true });
         }
       };
 
@@ -104,3 +117,7 @@ const LogInPage = () => {
 }
 
 export default LogInPage
+
+function setRegistrationStatus(arg0: { success: boolean; error: boolean }) {
+  throw new Error('Function not implemented.')
+}
